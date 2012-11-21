@@ -64,30 +64,6 @@ namespace LogShipperConsole.BL.Queue
                 }
             }
         }
-
-        public static void TryUnqueue(object restoreItem)
-        {
-            var _restoreItem = (RestoreItem)restoreItem;
-
-            lock (QueuedFiles)
-            {
-                if (!QueuedFiles.Any(resItem => resItem.File.FullName == _restoreItem.File.FullName))
-                    return;
-
-                var item = QueuedFiles.Select(x => new RestoreItem { ManagedDatabase = x.ManagedDatabase, File = x.File, IsManaged = x.IsManaged }).Where(resItem => resItem.File.FullName == _restoreItem.File.FullName).FirstOrDefault();
-                QueuedFiles.RemoveAll(resItem => resItem.File.FullName == _restoreItem.File.FullName);
-                //OnQueueChange(item, new RestoreQueueChangeEventArgs(RestoreQueueChangeState.Delete));
-            }
-        }
-
-        public static List<RestoreItem> RetrieveQueue(string databaseName)
-        {
-            lock (QueuedFiles)
-            {
-                return QueuedFiles.Where(restoreItem => restoreItem.ManagedDatabase.Name == databaseName).ToList();
-            }
-        }
-
         #region events
         public delegate void PropertyChangeHandler(object sender, RestoreQueueChangeEventArgs data);
 

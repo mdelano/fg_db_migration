@@ -9,6 +9,10 @@ using LogShipperConsole.Configuration;
 
 namespace LogShipperConsole.BL
 {
+    /// <summary>
+    /// This class is responsible for listening for files from the 
+    /// dispatcher that need to be restored or recovered.
+    /// </summary>
     public class RestoreWorker
     {
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -25,6 +29,11 @@ namespace LogShipperConsole.BL
             _logService = new LogService();
         }
 
+        /// <summary>
+        /// Adds another file to the workers list of restore files. 
+        /// The worker will work through the file list on a FIFO basis
+        /// </summary>
+        /// <param name="restoreItem"></param>
         public void AssignRestoreItem(object restoreItem)
         {
             var _restoreItem = (RestoreItem)restoreItem;

@@ -10,7 +10,6 @@ namespace LogShipperConsole.Model
     public class RestoreItem
     {
         public FileInfo File { get; set; }
-        public bool IsManaged { get; set; }
         public ManagedDatabase ManagedDatabase { get; set; }
     }
 }

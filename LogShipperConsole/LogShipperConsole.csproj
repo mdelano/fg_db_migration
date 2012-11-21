@@ -71,13 +71,13 @@
     <Compile Include="BL\RestoreWorkDispatcher.cs" />
     <Compile Include="BL\RestoreWorker.cs" />
     <Compile Include="BL\LogService.cs" />
+    <Compile Include="CommonConstants.cs" />
     <Compile Include="Configuration\ManagedDatabaseElementCollection.cs" />
     <Compile Include="Configuration\ManagedDatabase.cs" />
     <Compile Include="BL\Queue\RestoreQueueChangeEventArgs.cs" />
     <Compile Include="Model\RestoreItem.cs" />
     <Compile Include="BL\Queue\RestoreQueue.cs" />
     <Compile Include="BL\Queue\RestoreQueueChangeState.cs" />
-    <Compile Include="Repository\Database.cs" />
     <Compile Include="BL\Watchers\DirectoryWatcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

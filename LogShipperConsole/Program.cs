@@ -25,21 +25,14 @@ namespace LogShipperConsole
 
         public static void Run()
         {
-            Log.Info("Fetching configuration for restore databases.");
-            var restoreConfiguration = ConfigurationManager.GetSection("restoreConfiguration") as RestoreConfiguration;
-            ThreadPool.SetMaxThreads(25, 50);
+            SetThreadPool();
 
-            Log.Info(string.Format("Found {0} configuration(s)", restoreConfiguration.ManagedDatabases.Count));
-            var restoreCoordinator = new RestoreWorkDispatcher();
-            foreach (var managedDatabaseConfiguration in restoreConfiguration.ManagedDatabases)
-            {
-                ThreadPool.QueueUserWorkItem(Watch, managedDatabaseConfiguration);
-            }
+            DispatchWatchers();
 
-            // Wait for the user to quit the program.
             ListenForCommand();
         }
 
+        // Leaves the command prompt ready for input
         private static void ListenForCommand()
         {
             Console.WriteLine("Press \'quit!\' to quit the console.");
@@ -62,6 +55,7 @@ namespace LogShipperConsole
             }
         }
 
+        // On user instruction, request the recovery of a database
         private static void NotifyRecovery()
         {
             Console.WriteLine("Which database would you like to recover?");
@@ -69,7 +63,28 @@ namespace LogShipperConsole
             RestoreQueue.RecoverDatabase = databaseName;
         }
 
-        public static void Watch(object managedDatabaseConfiguration)
+        private static void SetThreadPool()
+        {
+            var workerThreadsMax = Int32.Parse(ConfigurationManager.AppSettings[CommonConstants.WorkerThreadsMax]);
+            var completionPortThreadsMax = Int32.Parse(ConfigurationManager.AppSettings[CommonConstants.CompletionPortThreadsMax]);
+            ThreadPool.SetMaxThreads(workerThreadsMax, completionPortThreadsMax);
+        }
+
+        // Begin the file system watchers on the configured database log directories
+        private static void DispatchWatchers()
+        {
+            Log.Info("Fetching configuration for restore databases.");
+            var restoreConfiguration = ConfigurationManager.GetSection("restoreConfiguration") as RestoreConfiguration;
+            Log.Info(string.Format("Found {0} configuration(s)", restoreConfiguration.ManagedDatabases.Count));
+
+            var restoreCoordinator = new RestoreWorkDispatcher();
+            foreach (var managedDatabaseConfiguration in restoreConfiguration.ManagedDatabases)
+            {
+                ThreadPool.QueueUserWorkItem(Watch, managedDatabaseConfiguration);
+            }
+        }
+
+        private static void Watch(object managedDatabaseConfiguration)
         {
             var managedDatabase = (ManagedDatabase)managedDatabaseConfiguration;
             Log.Info(string.Format("Dispatched log directory watcher for database {0} at {1} .", managedDatabase.Name, managedDatabase.LogDirectory));

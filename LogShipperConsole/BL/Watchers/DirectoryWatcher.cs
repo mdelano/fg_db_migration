@@ -38,19 +38,19 @@ namespace LogShipperConsole.BL.Watchers
             {
                 Log.Info(string.Format("Found existing file, {0}. Dispatching to restore queue.", sortedFileInfo.FullName));
                 ThreadPool.QueueUserWorkItem(RestoreQueue.TryQueue,
-                    new RestoreItem { ManagedDatabase = _managedDatabase, File = new FileInfo(sortedFileInfo.FullName), IsManaged = false });
+                    new RestoreItem { ManagedDatabase = _managedDatabase, File = new FileInfo(sortedFileInfo.FullName)});
             }
         }
 
         // Define the event handlers. 
         protected override void OnCreated(object source, FileSystemEventArgs e)
         {
-            ThreadPool.QueueUserWorkItem(RestoreQueue.TryQueue, new RestoreItem { ManagedDatabase = _managedDatabase, File = new FileInfo(e.FullPath), IsManaged = false });
+            ThreadPool.QueueUserWorkItem(RestoreQueue.TryQueue, new RestoreItem { ManagedDatabase = _managedDatabase, File = new FileInfo(e.FullPath)});
         }
 
         protected override void OnChanged(object source, FileSystemEventArgs e)
         {
-            ThreadPool.QueueUserWorkItem(RestoreQueue.TryQueue, new RestoreItem { ManagedDatabase = _managedDatabase, File = new FileInfo(e.FullPath), IsManaged = false });
+            ThreadPool.QueueUserWorkItem(RestoreQueue.TryQueue, new RestoreItem { ManagedDatabase = _managedDatabase, File = new FileInfo(e.FullPath)});
         }
 
         protected override void OnDeleted(object source, FileSystemEventArgs e)
