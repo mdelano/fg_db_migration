@@ -39,6 +39,7 @@ namespace LogShipperConsole.BL.Watchers
                 Log.Info(string.Format("Found existing file, {0}. Dispatching to restore queue.", sortedFileInfo.FullName));
                 ThreadPool.QueueUserWorkItem(RestoreQueue.TryQueue,
                     new RestoreItem { ManagedDatabase = _managedDatabase, File = new FileInfo(sortedFileInfo.FullName)});
+                Thread.Sleep(5000);
             }
         }
 

@@ -49,7 +49,7 @@ namespace LogShipperConsole.BL
 
         private void Restore(RestoreItem restoreItem)
         {
-            _logService.Restore(restoreItem);
+            _logService.ScriptedRestore(restoreItem);
         }
 
         private void Recover()

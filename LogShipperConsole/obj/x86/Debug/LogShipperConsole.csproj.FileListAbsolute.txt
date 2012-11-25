@@ -6,3 +6,15 @@ C:\Projects\LogShipperConsole\LogShipperConsole\obj\x86\Debug\LogShipperConsole.
 C:\Projects\LogShipperConsole\LogShipperConsole\obj\x86\Debug\LogShipperConsole.pdb
 C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\log4net.dll
 C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\log4net.xml
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\Microsoft.CSharp.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\Microsoft.SqlServer.SmoExtended.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\Microsoft.SqlServer.SqlEnum.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\System.configuration.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\System.Data.DataSetExtensions.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\System.Data.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\System.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\System.Xml.dll
+C:\Projects\LogShipperConsole\LogShipperConsole\bin\Debug\System.Xml.Linq.dll
